@@ -8,21 +8,18 @@ export default function AssetGrid({ images }: { images: string[] }) {
   const [search, setSearch] = useState("");
 
   const copy = (fullPath: string) => {
-    // Constructing the GitHub Pages URL
-    const baseUrl = "https://enkoki.github.io";
+    const baseUrl = "https://enkoki.github.io/static_images";
     navigator.clipboard.writeText(`${baseUrl}/${fullPath}`);
     setCopied(fullPath);
     setTimeout(() => setCopied(null), 2000);
   };
 
-  // Filter images based on filename or folder name
   const filteredImages = images.filter((path) =>
     path.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <section>
-      {/* Search Bar Section */}
       <div className="mb-8 max-w-md">
         <div className="relative">
           <input
@@ -46,7 +43,6 @@ export default function AssetGrid({ images }: { images: string[] }) {
         </p>
       </div>
 
-      {/* The Grid */}
       <main className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {filteredImages.map((path) => {
           const parts = path.split('/');
