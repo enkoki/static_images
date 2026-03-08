@@ -7,8 +7,10 @@ export default function AssetGrid({ images }: { images: string[] }) {
   const [copied, setCopied] = useState<string | null>(null);
   const [search, setSearch] = useState("");
 
+  const BASE_PATH = "/static_images";
+
   const copy = (fullPath: string) => {
-    const baseUrl = "https://enkoki.github.io/static_images";
+    const baseUrl = `https://enkoki.github.io${BASE_PATH}`;
     navigator.clipboard.writeText(`${baseUrl}/${fullPath}`);
     setCopied(fullPath);
     setTimeout(() => setCopied(null), 2000);
@@ -57,7 +59,7 @@ export default function AssetGrid({ images }: { images: string[] }) {
             >
               <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded bg-zinc-100 dark:bg-zinc-800">
                 <Image
-                  src={`/${path}`}
+                  src={`${BASE_PATH}/${path}`}
                   alt={fileName || ""}
                   fill
                   className="object-contain p-2 transition-transform group-hover:scale-110"
